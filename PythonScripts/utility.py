@@ -26,11 +26,11 @@ class processData:
 
         for img in trainImgs:
             if self.flatten:
-                trainImgsLeft.append(img[:, :midVal].flatten())
-                trainImgsRight.append(img[:, midVal:].flatten())
+                trainImgsLeft.append((img[:, :midVal].flatten())/255)
+                trainImgsRight.append((img[:, midVal:].flatten())/255)
             else:
-                trainImgsLeft.append(img[:, :midVal])
-                trainImgsRight.append(img[:, midVal:])
+                trainImgsLeft.append((img[:, :midVal])/255)
+                trainImgsRight.append((img[:, midVal:])/255)
 
         return [trainImgsLeft, trainImgsRight], trainLabels
 
@@ -46,8 +46,12 @@ class processData:
         midVal = int(self.imgDim[0]/2)
 
         for img in testImgs:
-            testImgsLeft.append(img[:, :midVal])
-            testImgsRight.append(img[:, midVal:])
+            if self.flatten:
+                testImgsLeft.append((img[:, :midVal].flatten())/255)
+                testImgsRight.append((img[:, midVal:].flatten())/255)
+            else:
+                testImgsLeft.append((img[:, :midVal])/255)
+                testImgsRight.append((img[:, midVal:])/255)
 
         return [testImgsLeft, testImgsRight], testLabels
 
