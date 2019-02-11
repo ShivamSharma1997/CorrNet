@@ -30,7 +30,7 @@ leftImgs, rightImgs, labels = ext.trainValidationSplit(imgs, trainLabels)
 [trainImgsLeft, validImgsLeft] = leftImgs
 [trainImgsRight, validImgsRight] = rightImgs
 [trainLabels, validLabels] = labels
-'''
+
 ############## BUILDING AND TRAINING MODEL ##############
 
 corrNet = model(dimx=dimx,dimy=dimy,lmda=lmda,
@@ -40,7 +40,7 @@ corrNet = model(dimx=dimx,dimy=dimy,lmda=lmda,
 
 endModel, branchModel = corrNet.buildModel()
 corrNet.trainModel(endModel, trainImgsLeft, trainImgsRight)
-'''
+
 ############## TESTING MODEL ##############
 
 test = testModel(leftData=validImgsLeft, rightData=validImgsRight,
